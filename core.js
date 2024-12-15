@@ -107,9 +107,6 @@ jQuery.fn = jQuery.prototype = {
 		return this.pushStack( j >= 0 && j < len ? [ this[ j ] ] : [] );
 	},
 
-	end: function() {
-		return this.prevObject || this.constructor();
-	}
 };
 
 jQuery.extend = jQuery.fn.extend = function() {

